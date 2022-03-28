@@ -29,7 +29,7 @@ public class WorkerController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Worker> findAll(@PathVariable Long id) {
+	public ResponseEntity<Worker> findById(@PathVariable Long id) {
 		Optional<Worker> workerOptional = workerRepository.findById(id);
 		if(workerOptional.isEmpty()) {
 			return ResponseEntity.notFound().build();
