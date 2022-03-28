@@ -15,23 +15,13 @@ import com.coagula.hrpayroll.model.Worker;
 
 @Service
 public class PaymentService {
-
-	@Autowired
-	private RestTemplate restTemplate;
 	
 	@Autowired
 	private WorkerFeignClient workerFeignClient;
-	
-	@Value("${hr-worker.host}")
-	private String workerHost;
-	
+
+
 	public Payment getPayment(Long workerId, Integer days) {
-		
-//		Map<String,String> uriVariables = new HashMap<>();
-//		uriVariables.put("id", workerId.toString());
-//		String urlhrworker = workerHost + "/workers/{id}";
-//		Worker worker = restTemplate.getForObject(urlhrworker, Worker.class, uriVariables);
-//		Payment payment = new Payment(worker.getName(),Double.valueOf(worker.getDailyIncome()), days);
+
 		
 		Worker worker = workerFeignClient.findById(workerId).getBody();
 		Payment payment = new Payment(worker.getName(),Double.valueOf(worker.getDailyIncome()), days);
