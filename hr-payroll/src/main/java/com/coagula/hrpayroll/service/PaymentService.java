@@ -22,11 +22,11 @@ public class PaymentService {
 
 	public Payment getPayment(Long workerId, Integer days) {
 
-		try {
-			Thread.sleep(3000);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(3000);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
 		Worker worker = workerFeignClient.findById(workerId).getBody();
 		Payment payment = new Payment(worker.getName(),Double.valueOf(worker.getDailyIncome()), days);
